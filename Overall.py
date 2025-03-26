@@ -7,11 +7,11 @@ from tkinter import Tk, Button, Label, filedialog, Toplevel
 from PIL import Image, ImageTk
 
 # Load classification model
-classify_model = load_model('food_classify.keras')
+classify_model = load_model('classify_foods.keras')
 menu_labels = ['Burger', 'Dessert', 'Pizza', 'Ramen', 'Sushi']  # Adjust labels if needed
 
 # Load pairwise models
-pair_models = {menu: load_model(f'food_pair_{menu}.keras') for menu in menu_labels}
+pair_models = {menu: load_model(f'{menu}_compairs.keras') for menu in menu_labels}
 
 def classify_image(image_path):
     img = cv2.imread(image_path)
