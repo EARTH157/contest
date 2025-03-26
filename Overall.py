@@ -29,10 +29,11 @@ def compare_images(model, img1_path, img2_path):
 
 def show_image_pairs(image_folder):
     # Sort files in the folder to ensure correct order
-    image_pairs = [
-        entry.path for entry in os.scandir(image_folder)
-        if entry.is_file() and entry.name.lower().endswith(('png', 'jpg', 'jpeg'))
-    ]
+    image_pairs = sorted(
+        (entry.path for entry in os.scandir(image_folder)
+        if entry.is_file() and entry.name.lower().endswith(('png', 'jpg', 'jpeg'))),
+        key=lambda x: int(os.path.splitext(os.path.basename(x))[0])
+    )
 
     results = []
     index = [0]
